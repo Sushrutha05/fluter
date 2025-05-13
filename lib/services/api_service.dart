@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
   final String _baseUrl = 'https://www.googleapis.com/books/v1/volumes';
-  final String _apiKey = 'AIzaSyCIPaZzFJ6I6DOrp48beXHPPLKQcfhzUV4';
+  final String _apiKey = dotenv.env['GOOGLE_BOOKS_API_KEY'] ?? '';
 
   Future<List<dynamic>> fetchBooks(String query) async {
     final response = await http.get(
